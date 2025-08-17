@@ -7,18 +7,17 @@ items:
       labels:
         qcloud-app: election-demo
       name: election-demo
-      namespace: staging
+      namespace: demo
     spec:
       ports:
-      - nodePort: 31541
-        name: tcp7001
+      - name: tcp7001
         protocol: TCP
         port: 7001
         targetPort: 7001 
       selector:
         qcloud-app: election-demo
       sessionAffinity: None
-      type: NodePort
+      type: ClusterIP
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -27,11 +26,11 @@ items:
       labels:
         qcloud-app: election-demo
       name: election-demo
-      namespace: staging
+      namespace: demo
     spec:
-      minReadySeconds: 10
+      minReadySeconds: 1
       replicas: 1
-      revisionHistoryLimit: 5
+      revisionHistoryLimit: 3
       selector:
         matchLabels:
           qcloud-app: election-demo
@@ -46,12 +45,12 @@ items:
             qcloud-app: election-demo
         spec:
           containers:
-            - image: ccr.ccs.tencentyun.com/quqi/election-demo:0.0.2
+            - image: xxx.com/election-demo:0.0.1
               env:
                 - name: EGG_SERVER_ENV
                   value: demo
                 - name: EGG_WORKERS
-                  value: "4"
+                  value: "2"
               imagePullPolicy: IfNotPresent
               name: election-demo
               livenessProbe:
@@ -95,8 +94,8 @@ items:
                   cpu: "1000m"
           dnsPolicy: ClusterFirst
           imagePullSecrets:
-          - name: qcloudregistrykey
-          - name: tencenthubkey
+          - name: xxx
+          - name: xxx
           restartPolicy: Always
           securityContext: {}
           serviceAccountName: ""

@@ -5,12 +5,12 @@ export default () => {
 
   config.mysql = {
     clients: {
-      download_assistant: {
-        host: '10.1.0.253',
+      election: {
+        host: '127.0.0.1',
         port: '3306',
-        user: 'doc',
-        password: 'doc',
-        database: 'download_assistant',
+        user: 'xxx',
+        password: 'xxx',
+        database: 'election',
       },
     },
     app: true,
@@ -19,12 +19,12 @@ export default () => {
 
   config.redis = {
     client: {
-      port: 6380,
-      host: '10.1.0.253',
+      port: 6379,
+      host: '127.0.0.1',
       password: '',
-      db: 3,
+      db: 0,
     },
   };
-  config.useCosUrl = true;
+  
   return config;
 };

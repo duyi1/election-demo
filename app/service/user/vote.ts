@@ -50,4 +50,34 @@ export default class UserVoteService extends Service {
       return false;
     }
   }
+
+  //获取已投票选举详情
+  public async getAllVoteStatus(userId: number, electionId: number) {
+    // 检查用户是否存在
+    const user = await this.ctx.app.repository.user.findById(userId);
+    if (!user) {
+      throw new ElectionError(this.ctx, '用户不存在');
+    }
+
+    if (!user.hasVoted) {
+      throw new ElectionError(this.ctx, '用户未投过票');
+    }
+    // 获取所有候选人的得票情况
+    const candidates = await this.ctx.app.repository.candidate.findAll(electionId);
+    const result = new Array();
+    
+    for (const candidate of candidates) {
+      // 获取每个候选人的得票数
+      const voteCount = await this.ctx.app.repository.vote_record.countVotesByCandidate(candidate.id);
+    
+      result.push({
+        candidate: {
+          id: candidate.id,
+          name: candidate.name
+        },
+        voteCount,
+      });
+    }
+    return result;
+  }
 }

@@ -17,4 +17,19 @@ export default class UserVoteController extends Controller {
         ctx.catchErrResp(error)
     }
   }
+
+    // 获取选举活动中所有候选人得票情况
+  public async getAllVoteStatus() {
+    const { ctx } = this;
+    try {
+      const { userId, electionId } = ctx.query;
+      if(!electionId) {
+        throw new ElectionError(ctx, '请输入选举ID');
+      }
+      const results = await ctx.service.user.vote.getAllVoteStatus(userId, electionId);
+      this.ctx.succResp(results);
+    } catch (error) {
+      this.ctx.catchErrResp(error);
+    }
+  }
 }
