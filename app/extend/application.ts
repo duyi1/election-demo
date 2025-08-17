@@ -1,30 +1,19 @@
-import CDNCollection from '../model/cdn/cdnCollection';
-import COS = require('cos-nodejs-sdk-v5');
-
-const cdnCollectionSymbol = Symbol('CDNCONNECTIONINSTANCE');
-const cosClientSymbol = Symbol('COS_CLIENT_SYMBOL');
+import UserRepository from '../repository/user';
+import CandidateRepository from '../repository/candidate';
+import ElectionRepository from '../repository/election';
+import VoteRecordRepository from '../repository/vote_record';
+import CacheRepository from '../repository/cache';
 
 const app: any = {
-  get cdnCollection () {
-    if (!this[cdnCollectionSymbol]) {
-      const ctx = this.createAnonymousContext();
-      this[cdnCollectionSymbol] = new CDNCollection(ctx);
-      return this[cdnCollectionSymbol];
-    }
-    return this[cdnCollectionSymbol];
-
-  },
-  get cosClient() {
-    if (!this[cosClientSymbol]) {
-      const ctx = this.createAnonymousContext();
-      this[cosClientSymbol] = new COS({
-        SecretId: ctx.app.config.cosConfig.SecretId,
-        SecretKey: ctx.app.config.cosConfig.SecretKey,
-      });
-      return this[cosClientSymbol];
-    }
-    return this[cosClientSymbol];
-  },
+   get repository() {
+    return {
+      user: this.getRepository(UserRepository),
+      candidate: this.getRepository(CandidateRepository),
+      election: this.getRepository(ElectionRepository),
+      vote_record: this.getRepository(VoteRecordRepository),
+      cache: this.getRepository(CacheRepository)
+    };
+  }
 };
 
 export default app;

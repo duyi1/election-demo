@@ -5,8 +5,8 @@ items:
     kind: Service
     metadata:
       labels:
-        qcloud-app: download-assistant
-      name: download-assistant
+        qcloud-app: election-demo
+      name: election-demo
       namespace: staging
     spec:
       ports:
@@ -16,17 +16,17 @@ items:
         port: 7001
         targetPort: 7001 
       selector:
-        qcloud-app: download-assistant
+        qcloud-app: election-demo
       sessionAffinity: None
       type: NodePort
   - apiVersion: apps/v1
     kind: Deployment
     metadata:
       annotations:
-        description: download-assistant
+        description: election-demo
       labels:
-        qcloud-app: download-assistant
-      name: download-assistant
+        qcloud-app: election-demo
+      name: election-demo
       namespace: staging
     spec:
       minReadySeconds: 10
@@ -34,7 +34,7 @@ items:
       revisionHistoryLimit: 5
       selector:
         matchLabels:
-          qcloud-app: download-assistant
+          qcloud-app: election-demo
       strategy:
         rollingUpdate:
           maxSurge: 1
@@ -43,17 +43,17 @@ items:
       template:
         metadata:
           labels:
-            qcloud-app: download-assistant
+            qcloud-app: election-demo
         spec:
           containers:
-            - image: ccr.ccs.tencentyun.com/quqi/download-assistant:0.0.2
+            - image: ccr.ccs.tencentyun.com/quqi/election-demo:0.0.2
               env:
                 - name: EGG_SERVER_ENV
                   value: demo
                 - name: EGG_WORKERS
                   value: "4"
               imagePullPolicy: IfNotPresent
-              name: download-assistant
+              name: election-demo
               livenessProbe:
                 failureThreshold: 3
                 httpGet:

@@ -2,10 +2,12 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportCheckPassportId from '../../../app/middleware/checkPassportId';
+import ExportAdminAuth from '../../../app/middleware/admin_auth';
+import ExportUserAuth from '../../../app/middleware/user_auth';
 
 declare module 'egg' {
   interface IMiddleware {
-    checkPassportId: typeof ExportCheckPassportId;
+    adminAuth: typeof ExportAdminAuth;
+    userAuth: typeof ExportUserAuth;
   }
 }

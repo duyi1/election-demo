@@ -11,7 +11,7 @@ export default class Base {
     return this.ctx.app.redis;
   }
   get DB() {
-    const db = this.ctx.app.mysql.get('download_assistant') as any;
+    const db = this.ctx.app.mysql.get('election') as any;
     return db;
   }
 }

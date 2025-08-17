@@ -1,12 +1,20 @@
 import {Redis} from 'ioredis';
-import { Cruia } from '../app/lib/curia';
-import CDNCollection from '../app/model/cdn/cdnCollection';
+import CandidateRepository from '../app/repository/candidate';
+import ElectionRepository from '../app/repository/election';
+import VoteRecordRepository from '../app/repository/vote_record';
+import CacheRepository from '../app/repository/cache';
+import UserRepository from '../app/repository/user';
 
 declare module 'egg' {
   interface Application {
     redis: Redis;
     mysql: any;
-    curia: Cruia;
-    cdnCollection: CDNCollection;
+    repository: {
+      user: UserRepository;
+      candidate: CandidateRepository;
+      election: ElectionRepository;
+      vote_record: VoteRecordRepository;
+      cache: CacheRepository;
+    };
   }
 }

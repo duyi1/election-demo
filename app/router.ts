@@ -4,17 +4,17 @@ export default (app: Application) => {
   const { controller, router } = app;
 
   router.get('/healthCheck', controller.home.index);
-  // router.get('/counter', controller.monitor.counter);
-  // router.get('/gauge1', controller.monitor.gauge1);
-  // router.get('/gauge2', controller.monitor.gauge2);
-  // router.get('/histogram1', controller.monitor.histogram1);
-  // router.get('/histogram2', controller.monitor.histogram2);
-  // router.get('/summary', controller.monitor.summary);
 
-  router.post('/downloadAssistantIntra/accessCode/create', controller.accessCode.createCode);
-  router.post('/downloadAssistant/accessCode/check', controller.accessCode.checkCode);
-  router.get('/downloadAssistant/fileList', controller.node.getNodeList);
-  router.get('/downloadAssistant/file/download', controller.node.nodeDownload);
-  router.get('/downloadAssistant/file/v2/download', controller.node.nodeDownloadV2);
+// 管理员路由
+  router.post('/admin/election/start', controller.admin.election.start);
+  router.post('/admin/election/end', controller.admin.election.end);
+  router.get('/admin/election/results', controller.admin.election.getResults);
+  router.post('/admin/candidates', controller.admin.candidate.add);
+  router.get('/admin/candidates', controller.admin.candidate.list);
+  
+  // 用户路由
+  router.post('/user/register', controller.user.auth.register);
+  router.post('/user/vote', controller.user.vote.castVote);
+  router.get('/election/status', controller.user.vote.getStatus);
 };
 

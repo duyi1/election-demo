@@ -4,7 +4,7 @@ set -ex
 
 cd `dirname $0`
 
-IMAGE_NAME=download-assistant
+IMAGE_NAME=election-demo
 
 if [ ! $1 ]; then
   VERSION=`cat VERSION`

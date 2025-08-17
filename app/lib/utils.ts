@@ -1,12 +1,3 @@
-import { BroadDocType, DocType } from './enum';
-
-export function getMaxSize(sizeArray: number[]) {
-  sizeArray.sort((a, b) => {
-    return a - b;
-  });
-  return sizeArray[sizeArray.length - 1];
-}
-
 export function getCurrentTimestamp(): number {
   return Math.floor(Date.now() / 1000);
 }
@@ -44,48 +35,8 @@ export function createRandomNum(digit: number) {
   return random;
 }
 
-export function createRandomString(length: number) {
-  const str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let result = '';
-  for (var i = length; i > 0; --i) 
-      result += str[Math.floor(Math.random() * str.length)];
-  return result;
-}
-
-export function docTypeStringTransfer(docType: number) {
-  if (docType >= DocType.IMG_JPEG && docType <= DocType.IMG_RAW) {
-    return BroadDocType.IMAGE;
-  }
-  if (docType >= DocType.VIDEO_3GP && docType <= DocType.VIDEO_DAT) {
-    return BroadDocType.VIDEO;
-  }
-  if (docType >= DocType.AUDIO_MP3 && docType <= DocType.AUDIO_MV) {
-    return BroadDocType.AUDIO;
-  }
-  if (docType == DocType.T_QUQI) {
-    return BroadDocType.QUQI_DOC;
-  }
-  if (docType == DocType.TABLE_EXCEL || docType == DocType.TABLE_QUQI) {
-    return BroadDocType.SHEET;
-  }
-  if (docType == DocType.T_WORD) {
-    return BroadDocType.WORD;
-  }
-  if (docType == DocType.PT_PPT) {
-    return BroadDocType.PPT;
-  }
-  if (docType == DocType.EB_PDF) {
-    return BroadDocType.PDF;
-  }
-  return BroadDocType.OTHRT;
-}
-
-export function getCosUrlDomianFromBucket(bucket: string) {
-  const bucketDomianMap = {
-    "demoquqicom-1253287318":"demodl1.quqi.com",
-    "uploaddemo-1253287318":"demodl2.quqi.com",
-    "quqicom-1253287318":"dl1.quqi.com",
-    "upload-1253287318":"dl2.quqi.com"
-  }
-  return bucketDomianMap[bucket];
+export function validateHKID(hkid: string): boolean {
+  // 验证香港身份证格式: 字母+6位数字+(1位数字)
+  const hkidPattern = /^[A-Z]{1}[0-9]{6}\([0-9]{1}\)$/;
+  return hkidPattern.test(hkid);
 }

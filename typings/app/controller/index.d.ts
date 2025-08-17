@@ -2,14 +2,22 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportAccessCode from '../../../app/controller/accessCode';
 import ExportHome from '../../../app/controller/home';
-import ExportNode from '../../../app/controller/node';
+import ExportAdminCandidate from '../../../app/controller/admin/candidate';
+import ExportAdminElection from '../../../app/controller/admin/election';
+import ExportUserAuth from '../../../app/controller/user/auth';
+import ExportUserVote from '../../../app/controller/user/vote';
 
 declare module 'egg' {
   interface IController {
-    accessCode: ExportAccessCode;
     home: ExportHome;
-    node: ExportNode;
+    admin: {
+      candidate: ExportAdminCandidate;
+      election: ExportAdminElection;
+    }
+    user: {
+      auth: ExportUserAuth;
+      vote: ExportUserVote;
+    }
   }
 }

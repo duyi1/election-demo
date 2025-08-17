@@ -1,13 +1,10 @@
 {
-  "name": "download-assistant",
+  "name": "election-demo",
   "version": "0.0.1",
-  "description": "download-assistant",
+  "description": "election-demo",
   "private": true,
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.72.0",
-    "cos-nodejs-sdk-v5": "^2.14.4",
     "egg": "^2.2.1",
-    "egg-alinode": "^2.0.1",
     "egg-cluster": "^1.27.1",
     "egg-mysql": "^3.1.0",
     "egg-redis": "^2.4.0",
@@ -30,8 +27,8 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --title=egg-server-showcase",
-    "stop": "egg-scripts stop --title=egg-server-showcase",
+    "start": "egg-scripts start --title=election-demo",
+    "stop": "egg-scripts stop --title=election-demo",
     "dev": "egg-bin dev -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
     "test-local": "EGG_TYPESCRIPT=true ./node_modules/.bin/jest",
