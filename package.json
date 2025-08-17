@@ -1,0 +1,47 @@
+{
+  "name": "download-assistant",
+  "version": "0.0.1",
+  "description": "download-assistant",
+  "private": true,
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.72.0",
+    "cos-nodejs-sdk-v5": "^2.14.4",
+    "egg": "^2.2.1",
+    "egg-alinode": "^2.0.1",
+    "egg-cluster": "^1.27.1",
+    "egg-mysql": "^3.1.0",
+    "egg-redis": "^2.4.0",
+    "egg-scripts": "^2.5.0",
+    "util": "^0.12.4"
+  },
+  "egg": {
+    "typescript": true
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.0",
+    "@types/node": "^8.10.19",
+    "egg-bin": "^4.19.0",
+    "egg-ts-helper": "^1.30.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^6.1.1",
+    "tslib": "^1.9.2"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --title=egg-server-showcase",
+    "stop": "egg-scripts stop --title=egg-server-showcase",
+    "dev": "egg-bin dev -r egg-ts-helper/register",
+    "debug": "egg-bin debug -r egg-ts-helper/register",
+    "test-local": "EGG_TYPESCRIPT=true ./node_modules/.bin/jest",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "cov": "egg-bin cov -r egg-ts-helper/register",
+    "tsc": "ets && tsc -p tsconfig.json",
+    "ci": "npm run lint && npm run tsc && egg-bin cov --no-ts",
+    "lint": "tslint .",
+    "clean": "ets clean"
+  },
+  "author": "du",
+  "NODEJS_SERVER_TEMPLATE_VERSION": "1.0.0"
+}

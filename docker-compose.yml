@@ -1,0 +1,8 @@
+version: '1'
+services: 
+  cnode:
+    image: ccr.ccs.tencentyun.com/quqi/node-template:latest
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 7001:7001
